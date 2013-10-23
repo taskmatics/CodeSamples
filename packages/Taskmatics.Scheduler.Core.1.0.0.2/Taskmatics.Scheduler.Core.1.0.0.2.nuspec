@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Taskmatics.Scheduler.Core</id>
+    <version>1.0.0.2</version>
+    <title>Taskmatics Scheduler Core</title>
+    <authors>Taskmatics</authors>
+    <owners>Taskmatics</owners>
+    <projectUrl>http://www.taskmatics.com/</projectUrl>
+    <iconUrl>http://www.taskmatics.com/content/images/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This package contains the API support for creating custom tasks, triggers and event listeners for use in the Taskmatics Scheduler.</description>
+    <summary>Contains everything needed to create custom scheduling components for the Taskmatics Scheduler.</summary>
+    <releaseNotes />
+    <copyright>Copyright (c) 2013 Taskmatics</copyright>
+    <language />
+    <tags>Taskmatics Scheduler task automation framework job</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework=".NETFramework4.0" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

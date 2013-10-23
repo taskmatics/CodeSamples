@@ -1,0 +1,641 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Taskmatics.Scheduler.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Taskmatics.Scheduler.Core.EventListenerHarness`1">
+            <summary>
+            Used to test custom event listeners.
+            </summary>
+            <typeparam name="TEventListener">The type of event listener to test.</typeparam>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.EventListenerHarness`1.#ctor(System.Collections.Generic.List{System.String},System.Object,System.Boolean,System.Func{`0})">
+            <summary>
+            Creates an instance of an EventListenerHarness.
+            </summary>
+            <param name="eventNames">The names of events in which to subscribe the event listener to.</param>
+            <param name="parameters">
+                An object representing the input parameters for the event listener. 
+                This must be an instance of the type declared in the InputParametersAttribute on the event listener.
+            </param>
+            <param name="throwOnError">A value representing whether or not an error should be thrown out of the RaiseEvent method.</param>
+            <param name="factory">
+                A function that creates an instance of the custom event listener. This provides for a better unit testing experience.
+            </param>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.EventListenerHarness`1.RaiseEvent(System.String,System.Object[])">
+            <summary>
+            Raises an event on the event listener being tested.
+            </summary>
+            <param name="eventName">The name of the event to raise.</param>
+            <param name="eventParameters">A list of parameters associated with the event.</param>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.EventListenerHarness`1.EventListener">
+            <summary>
+            Gets the event listener created by this harness.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.Diagnostics.ILogWriter">
+            <summary>
+            This type is for internal use only.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.Diagnostics.IRemoteTracer">
+            <summary>
+            This type is for internal use only.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.Diagnostics.IRemoteTracerAsync">
+            <summary>
+            This type is for internal use only.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.Diagnostics.ITracer">
+            <summary>
+            This type is for internal use only.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.Diagnostics.TraceOptions">
+            <summary>
+            This type is for internal use only.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.Diagnostics.Tracer">
+            <summary>
+            This type is for internal use only.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.ParameterRenderMode">
+            <summary>
+            Indicates the desired rendering mode of a configuration parameter.
+            </summary>
+        </member>
+        <member name="F:Taskmatics.Scheduler.Core.ParameterRenderMode.Default">
+            <summary>
+            Results in the parameter being rendered with an input element appropriate to its type.
+            </summary>
+            <example>In this mode, a boolean value will be rendered as a checkbox.</example>
+        </member>
+        <member name="F:Taskmatics.Scheduler.Core.ParameterRenderMode.MultilineTextBox">
+            <summary>
+            Results in the parameter being rendered with a resizable multi-line text box. 
+            </summary>
+            <remarks>
+            This setting is only intended for string parameters that expect a large amount of text.
+            </remarks>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.ParameterRenderModeAttribute">
+            <summary>
+            Assigns a ParameterRenderMode to a property of a custom configuration object for use when rendering the configuration form.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.ParameterRenderModeAttribute.#ctor(Taskmatics.Scheduler.Core.ParameterRenderMode)">
+            <summary>
+            Creates an instance of the ParameterRenderMode class.
+            </summary>
+            <param name="value">The desired ParameterRenderMode setting.</param>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.ParameterRenderModeAttribute.Value">
+            <summary>
+            Gets the current ParameterRenderMode value.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.TriggerHarness`1">
+            <summary>
+            Used to test custom triggers.
+            </summary>
+            <typeparam name="TTrigger">The type of Trigger to test.</typeparam>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.TriggerHarness`1.#ctor(System.Object,System.Func{`0})">
+            <summary>
+            Creates an instance of a TriggerHarness.
+            </summary>
+            <param name="parameters">
+                An object representing the input parameters for the Trigger. 
+                This must be an instance of the type declared in the InputParametersAttribute placed on the Trigger being tested.
+            </param>
+            <param name="factory">
+                A function that creates an instance of the custom trigger. This provides for a better unit testing experience.
+            </param>
+        </member>
+        <member name="E:Taskmatics.Scheduler.Core.TriggerHarness`1.TriggerFired">
+            <summary>
+            Occurs when the Trigger has been fired.
+            </summary>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TriggerHarness`1.Trigger">
+            <summary>
+            Gets the Trigger instance created by this harness.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.EventListenerContext">
+            <summary>
+            The context for the currently executing EventListener.
+            </summary>
+            <remarks>Contains information relevant to the currently executing EventListener instance.</remarks>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.EventListenerContext.#ctor(System.Collections.Generic.ICollection{System.String},System.Object,System.Boolean)">
+            <summary>
+            Creates a new instance of an EventListenerContext.
+            </summary>
+            <param name="eventNames">The names of the events which the EventListener is expected to handle.</param>
+            <param name="parameters">
+                An object representing the input parameters for the EventListener. 
+                This must be an instance of the type declared in the InputParametersAttribute on the EventListener.
+            </param>
+            <param name="throwOnError">Indicates whether the EventListener will fail the currently executing Task when an exception occurs.</param>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.EventListenerContext.Task">
+            <summary>
+            Gets the task instance for the EventListener that this context instance belongs to.
+            </summary>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.EventListenerContext.EventNames">
+            <summary>
+            Gets the names of the events which the EventListener is expected to handle.
+            </summary>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.EventListenerContext.Parameters">
+            <summary>
+                Gets the object representing the input parameters for the EventListener. 
+                This will be an instance of the type declared in the InputParametersAttribute on the EventListener.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.Networking.Connection.TakeOver(Taskmatics.Scheduler.Core.Networking.Connection)">
+            <summary>
+            Takes over the underlying TCP client from the connection specified.
+            </summary>
+            <param name="connectionToTakeOver">The connection to take over. This connection must not have been initialized.</param>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.ComponentType">
+            <summary>
+            This type is for internal use only.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.ConfigurationLocations">
+            <summary>
+            Defines the levels at which the setting of a configuration property is allowed.
+            </summary>
+            <remarks>This is used when rendering custom configuration objects on the configuration form of the administration website.</remarks>
+        </member>
+        <member name="F:Taskmatics.Scheduler.Core.ConfigurationLocations.Nowhere">
+            <summary>
+            Specifies that the property is not modifiable.
+            </summary>
+            <remarks>This is currently not supported by the system and behaves the same as the Anywhere member.</remarks>
+        </member>
+        <member name="F:Taskmatics.Scheduler.Core.ConfigurationLocations.Definition">
+            <summary>
+            Specifies that the property is modifiable only when configuring a component definition.
+            </summary>
+        </member>
+        <member name="F:Taskmatics.Scheduler.Core.ConfigurationLocations.Schedule">
+            <summary>
+            Specifies that the property is modifiable only when configuring a scheduled task.
+            </summary>
+        </member>
+        <member name="F:Taskmatics.Scheduler.Core.ConfigurationLocations.Anywhere">
+            <summary>
+            Specifies that the property is modifiable when configuring both component definitions and scheduled tasks.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.Diagnostics.TraceLevel">
+            <summary>
+            This type is for internal use only.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.EventListener">
+            <summary>
+            Used to execute custom logic when events are raised during the execution of a task.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.EventListener.#ctor">
+            <summary>
+            Creates a new instance of an EventListener.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.EventListener.Execute(System.String,System.Object[])">
+            <summary>
+            Executes the custom logic in the event listener.
+            </summary>
+            <param name="eventName">The name of the event that was raised in the executing task.</param>
+            <param name="eventParameters">The list of parameters associated to the event being raised.</param>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.EventListener.Context">
+            <summary>
+            Gets the current context for the executing EventListener.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.ILogger">
+            <summary>
+            Defines the interface for logging messages. 
+            </summary>
+            <remarks>Implementations of this interface can be used to override the custom logging behavior of a task.</remarks>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.ILogger.Log(System.String,System.Object[])">
+            <summary>
+            Logs a message.
+            </summary>
+            <param name="messageFormat">The message to be logged.</param>
+            <param name="args">The arguments to be supplied to the messageFormat parameter.</param>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.ILogger.Log(System.Exception)">
+            <summary>
+            Logs an Exception 
+            </summary>
+            <param name="exception">The exception to log.</param>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.ILogger.Log(System.Exception,System.String,System.Object[])">
+            <summary>
+            Logs an exception with an additional message.
+            </summary>
+            <param name="exception">The exception to log.</param>
+            <param name="messageFormat">An additional message that further describes the context of the exception.</param>
+            <param name="args">The arguments to be supplied to the messageFormat parameter.</param>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.InputParametersAttribute">
+            <summary>
+            Defines the Type to be used as the input parameters object for the target class.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.ParametersAttribute">
+            <summary>
+            The base class that defines the Type to be used as the parameters object for the target class.
+            </summary>
+            <remarks>
+            This is the base class used to associate parameter object types with custom task, trigger and event listener implementations.
+            </remarks>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.ParametersAttribute.#ctor(System.Type)">
+            <summary>
+            Creates a new instance of a ParametersAttribute.
+            </summary>
+            <param name="type">The Type that will be associated with the parameters for the target class.</param>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.ParametersAttribute.Type">
+            <summary>
+            Gets the Type of the parameters.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.InputParametersAttribute.#ctor(System.Type)">
+            <summary>
+            Creates a new instance of the InputParametersAttribute.
+            </summary>
+            <param name="type">The type corresponding to the object that will serve as the input parameters for the target class.</param>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.OutputParametersAttribute">
+            <summary>
+            Defines the Type to be used as the output parameters object for the target class.
+            </summary>
+            <remarks>
+            This class currently only applies to Trigger implementations.
+            </remarks>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.OutputParametersAttribute.#ctor(System.Type)">
+            <summary>
+            Creates a new instance of the OutputParametersAttribute.
+            </summary>
+            <param name="type">The type corresponding to the object that will serve as the output parameters for the target class.</param>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.ParameterAttribute">
+            <summary>
+            Defines settings for a parameter property on a class used as input or output parameters for a task, trigger or event listener.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.ParameterAttribute.#ctor(Taskmatics.Scheduler.Core.ConfigurationLocations)">
+            <summary>
+            Creates an instance of a ParameterAttribute.
+            </summary>
+            <param name="configurationLocations">Specifies the locations where the target property is allowed to be configured.</param>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.ParameterAttribute.ConfigurationLocations">
+            <summary>
+            Gets the configuration locations for the current parameter.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.RaisesEventAttribute">
+            <summary>
+            Defines an event that could be raised from the target task class.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.RaisesEventAttribute.#ctor(System.String)">
+            <summary>
+            Creates an instance of the RaisesEventAttribute class.
+            </summary>
+            <param name="eventName">The name of the event that could be raised from the task</param>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.RaisesEventAttribute.EventName">
+            <summary>
+            Get the name of the event.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.TaskBase">
+            <summary>
+            The base class for all custom tasks. Derive from this class to create a custom task.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.TaskBase.#ctor">
+            <summary>
+            Initializes the base class. This should always be called.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.TaskBase.Execute">
+            <summary>
+            Executes the core logic of the task. Override this method to provide custom logic for a task.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.TaskBase.Terminate">
+            <summary>
+            Terminates a task. The base implementation aborts the thread executing the task. Override this method to provide custom (graceful) termination logic.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.TaskBase.Pause">
+            <summary>
+            Pauses a task. The base implementation throws a not implemented exception (which will not affect execution). Override this method to provide pausing logic.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.TaskBase.Resume">
+            <summary>
+            Resumes a task from the paused state. The base implementation throws a NotImplementedException (which will not affect execution). Override this method to provide resume logic.
+            </summary>
+        </member>
+        <member name="E:Taskmatics.Scheduler.Core.TaskBase.TaskStateChanged">
+            <summary>
+            Occurs when the execution state of the current task changes.
+            </summary>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TaskBase.TaskState">
+            <summary>
+            Gets the execution state of the current task.
+            </summary>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TaskBase.Context">
+            <summary>
+            Gets the task context. The task context provides access to parameters, trigger information, logging and raising events.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.TaskContext">
+            <summary>
+            Provides access to parameters, trigger information, logging, event raising and other information related to the executing task.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.TaskContext.RaiseEvent(System.String,System.Object[])">
+            <summary>
+            Raises an event on the current task. This will execute any event listeners currently wired up to the supplied eventName.
+            </summary>
+            <param name="eventName">The name of the event to raise.</param>
+            <param name="parameters">Parameters associated to the event bing raised.</param>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.TaskContext.OverrideLogger(Taskmatics.Scheduler.Core.ILogger)">
+            <summary>
+            Overrides the current logger.
+            </summary>
+            <param name="logger">A custom implementation of ILogger to be used instead of the default. It is recommended that the default logger be wrapped and called from the custom logger in order to preserve the storage and live tracing of the messages.</param>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TaskContext.TaskInstanceId">
+            <summary>
+            Gets the ID of the task instance that is currently executing.
+            </summary>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TaskContext.ScheduledTaskName">
+            <summary>
+            Gets the name of the scheduled task that spawned the executing task instance.
+            </summary>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TaskContext.TriggeredDate">
+            <summary>
+            Get the date and time at which the current task was triggered.
+            </summary>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TaskContext.TriggerInfo">
+            <summary>
+            Gets information related to the trigger that kicked off the current task execution.
+            </summary>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TaskContext.Parameters">
+            <summary>
+            Gets a reference to the input parameters of the task. This property is valid only when the InputParametersAttribute is defined on the custom task class.
+            </summary>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TaskContext.Logger">
+            <summary>
+            Gets a reference to the current logger. This reference can be overriden by calling OverrideLogger with a custom ILogger implementation.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.TaskHarness`1">
+            <summary>
+            Used to test custom tasks.
+            </summary>
+            <typeparam name="TTask">The type of task to test.</typeparam>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.TaskHarness`1.#ctor(System.Object,Taskmatics.Scheduler.Core.TriggerInfo,System.Collections.Generic.List{Taskmatics.Scheduler.Core.EventListener},System.Func{`0})">
+            <summary>
+            Creates an instance of TaskHarness.
+            </summary>
+            <param name="parameters">The input parameters to be used in the custom task. This parameter is valid only when the InputParametersAttribute is defined on the custom task class.</param>
+            <param name="triggerInfo">An instance of TriggerInfo that simulates triggering of the custom task.</param>
+            <param name="eventListeners">A list of event listeners that can listen for events raised by the custom task.</param>
+            <param name="factory">
+                A function that creates an instance of the custom task. This provides for a better unit testing experience.
+            </param>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.TaskHarness`1.Execute">
+            <summary>
+            Executes the custom task.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.TaskHarness`1.Terminate">
+            <summary>
+            Terminates the custom task.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.TaskHarness`1.Pause">
+            <summary>
+            Pauses the custom task.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.TaskHarness`1.Resume">
+            <summary>
+            Resumes the custom task from the paused state.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.TaskHarness`1.WaitForCompletion">
+            <summary>
+            Blocks the current thread until the task finishes executing.
+            </summary>
+        </member>
+        <member name="E:Taskmatics.Scheduler.Core.TaskHarness`1.UnhandledException">
+            <summary>
+            Occurs when an unhandled exception is thrown out of the task.
+            </summary>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TaskHarness`1.ExecutionTask">
+            <summary>
+            Gets the System.Threading.Tasks.Task which is completed at the end of the custom task's execution.
+            </summary>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TaskHarness`1.Task">
+            <summary>
+            Gets the task created by this harness.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.TaskState">
+            <summary>
+            Defines the execution state of a task.
+            </summary>
+        </member>
+        <member name="F:Taskmatics.Scheduler.Core.TaskState.Initializing">
+            <summary>
+            The task has been triggered, but has not yet been created.
+            </summary>
+        </member>
+        <member name="F:Taskmatics.Scheduler.Core.TaskState.Initialized">
+            <summary>
+            The task has been created and initialized.
+            </summary>
+        </member>
+        <member name="F:Taskmatics.Scheduler.Core.TaskState.Executing">
+            <summary>
+            The task is currently executing.
+            </summary>
+        </member>
+        <member name="F:Taskmatics.Scheduler.Core.TaskState.Pausing">
+            <summary>
+            The task is currently being paused.
+            </summary>
+        </member>
+        <member name="F:Taskmatics.Scheduler.Core.TaskState.Paused">
+            <summary>
+            The task has been paused.
+            </summary>
+        </member>
+        <member name="F:Taskmatics.Scheduler.Core.TaskState.Resuming">
+            <summary>
+            The task is currently resuming from being paused.
+            </summary>
+        </member>
+        <member name="F:Taskmatics.Scheduler.Core.TaskState.Terminating">
+            <summary>
+            The task is being terminated.
+            </summary>
+        </member>
+        <member name="F:Taskmatics.Scheduler.Core.TaskState.Terminated">
+            <summary>
+            The task has been terminated.
+            </summary>
+        </member>
+        <member name="F:Taskmatics.Scheduler.Core.TaskState.Errored">
+            <summary>
+            The task has errored.
+            </summary>
+        </member>
+        <member name="F:Taskmatics.Scheduler.Core.TaskState.Completed">
+            <summary>
+            The task has completed successfully.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.TaskStateChangedEventArgs">
+            <summary>
+            This type is for internal use only.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.Trigger">
+            <summary>
+            The base class for all custom triggers. Derive from this class to create a custom trigger.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.Trigger.#ctor">
+            <summary>
+            Initializes the base class. This should always be called.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.Trigger.OnFired(System.Object)">
+            <summary>
+            Fires the trigger. Call this method to execute scheduled tasks scheduled with this trigger.
+            </summary>
+            <param name="outputParameters">A reference to the output parameters. This parameter is valid only when the OutputParametersAttribute is defined on the custom trigger class.</param>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.Trigger.Dispose">
+            <summary>
+            Disposes the instance. Override this method to provide cleanup code.
+            </summary>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.Trigger.Context">
+            <summary>
+            Gets the trigger context. The trigger context provides access to parameters, and logging.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.TriggerContext">
+            <summary>
+            Provides access to parameters, and logging for the current trigger.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.TriggerContext.OverrideLogger(Taskmatics.Scheduler.Core.ILogger)">
+            <summary>
+            Overrides the current logger.
+            </summary>
+            <param name="logger">A custom implementation of ILogger to be used instead of the default. It is recommended that the default logger be wrapped and called from the custom logger in order to preserve the storage and live tracing of the messages.</param>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TriggerContext.Parameters">
+            <summary>
+            Gets a reference to the input parameters of the trigger. This property is valid only when the InputParametersAttribute is defined on the custom trigger class.
+            </summary>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TriggerContext.Logger">
+            <summary>
+            Gets a reference to the current logger. This reference can be overriden by calling OverrideLogger with a custom logger.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.TriggerFiredEventArgs">
+            <summary>
+            Contains data related to the Fired event of a Trigger.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.TriggerFiredEventArgs.#ctor(System.Object)">
+            <summary>
+            Creates an instance using the output parameters supplied. This parameter is valid only when the InputParametersAttribute is defined on the custom trigger class.
+            </summary>
+            <param name="outputParameters">The object that will serve as the OutputParameters for the fired trigger. This must be an instance of the type specified on the OutputParametersAttribute defined on the trigger.</param>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TriggerFiredEventArgs.OutputParameters">
+            <summary>
+            Contains output parameters if supplied by the trigger. This property is valid only when the InputParametersAttribute is defined on the custom trigger class.
+            </summary>
+        </member>
+        <member name="T:Taskmatics.Scheduler.Core.TriggerInfo">
+            <summary>
+            Contains information related to the trigger that triggered a task execution.
+            </summary>
+        </member>
+        <member name="M:Taskmatics.Scheduler.Core.TriggerInfo.#ctor(System.String,System.String,System.Object,System.Object)">
+            <summary>
+            Creates an instance of TriggerInfo
+            </summary>
+            <param name="name">The name of the trigger.</param>
+            <param name="assemblyQualifiedName">The assembly qualified name of the trigger. This must be a vaild type that can be loaded in the current context.</param>
+            <param name="inputParameters">A reference to the input parameters of the trigger. This parameter is valid only when the InputParametersAttribute is defined on the custom trigger class.</param>
+            <param name="outputParameters">A reference to the output parameters of the trigger. This parameter is valid only when the OutputParametersAttribute is defined on the custom trigger class.</param>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TriggerInfo.Name">
+            <summary>
+            Gets the name of the trigger.
+            </summary>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TriggerInfo.Type">
+            <summary>
+            Gets the runtime type of the trigger.
+            </summary>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TriggerInfo.InputParameters">
+            <summary>
+            Get a reference to the input parameters of the trigger. This property is valid only when the InputParametersAttribute is defined on the custom trigger class.
+            </summary>
+        </member>
+        <member name="P:Taskmatics.Scheduler.Core.TriggerInfo.OutputParameters">
+            <summary>
+            Get a reference to the output parameters of the trigger. This property is valid only when the OutputParametersAttribute is defined on the custom trigger class.
+            </summary>
+        </member>
+    </members>
+</doc>
