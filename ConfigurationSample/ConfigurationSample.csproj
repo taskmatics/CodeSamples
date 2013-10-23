@@ -42,7 +42,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Taskmatics.Scheduler.Core">
-      <HintPath>..\..\..\Taskmatics.Scheduler.Core\bin\Debug\Taskmatics.Scheduler.Core.dll</HintPath>
+      <HintPath>..\packages\Taskmatics.Scheduler.Core.1.0.0.2\lib\net40\Taskmatics.Scheduler.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
